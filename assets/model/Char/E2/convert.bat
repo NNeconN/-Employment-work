@@ -1,0 +1,16 @@
+x2dat.exe e2_hip.x 
+x2dat.exe e2_body.x 
+x2dat.exe e2_head.x 
+x2dat.exe e2_armr0.x 
+x2dat.exe e2_arml0.x 
+x2dat.exe e2_legr0.x 
+x2dat.exe e2_legl0.x 
+x2dat.exe e2_armr1.x 
+x2dat.exe e2_arml1.x 
+x2dat.exe e2_legr1.x 
+x2dat.exe e2_legl1.x 
+x2dat.exe e2_wingr0.x
+x2dat.exe e2_wingl0.x
+x2dat.exe e2_wingr1.x
+x2dat.exe e2_wingl1.x
+x2dat.exe e2_tail0.x 
