@@ -21,16 +21,17 @@
 #include "AnimationData.h"
 #include "TimelineData.h"
 
-enum GraphList //モーショングラフリスト
-{
-	animetion,
-	timeline
-};
-
 //AnimationData g_anime;
 Timeline g_timeline;
 AnimationData g_anime;
 Monster g_monster;
+
+//モーショングラフリスト
+enum GraphList 
+{
+	animetion,
+	timeline
+};
 
 template <typename T>
 inline T RandomRange(T min, T max) {
@@ -87,6 +88,7 @@ ImVec4 RandomColor() {
 	return col;
 }
 
+//ゲーム初期化
 void GameInit() {
 	// DX11初期化
 	DX11Init(
@@ -96,7 +98,7 @@ void GameInit() {
 		false);
 
 	// カメラが必要
-	DirectX::XMFLOAT3 eye(0, 10, -270);	// カメラの位置
+	DirectX::XMFLOAT3 eye(0, 10, -70);	// カメラの位置
 	DirectX::XMFLOAT3 lookat(0, 0, 0);	// 注視点
 	DirectX::XMFLOAT3 up(0, 1, 0);		// カメラの上向きベクトル
 
@@ -133,6 +135,7 @@ void GameInput(uint64_t dt) {
 	CDirectInput::GetInstance().GetKeyBuffer();
 }
 
+//更新処理
 void GameUpdate(uint64_t dt) {
 	// プレイヤ更新
 	g_monster.Update();
@@ -236,6 +239,7 @@ void imguidebug() {
 	ImGui::End();
 }
 
+//描画
 void GameRender(uint64_t dt) {
 
 	float col[4] = { 1,0,0,1 };

@@ -16,7 +16,7 @@ AnimationData::AnimationData() //コンストラクタ
 //線形保管されているグラフ
 void AnimationData::Demo_DragPoints()
 {
-	bool ber = false;
+	bool berStart = false;
 	ImGui::BulletText("Click and drag each point.");
 	static ImPlotDragToolFlags flags = ImPlotDragToolFlags_None;
 	ImPlotAxisFlags ax_flags = ImPlotAxisFlags_LockMin | ImPlotAxisFlags_NoTickMarks;
@@ -30,15 +30,12 @@ void AnimationData::Demo_DragPoints()
 
 	if (ImGui::Button(u8"再生"))
 	{
-		ber = true;
+		berStart = true;
 	}
 
 	if (ImGui::CollapsingHeader(u8"速度"))
 	{
 		ImGui::Text("bbbbb");
-		//ImGui::CheckboxFlags("Pos", &flags, ImPlotDragToolFlags_NoCursors); ImGui::SameLine();
-		//ImGui::CheckboxFlags("Rot", &flags, ImPlotDragToolFlags_NoFit); ImGui::SameLine();
-		//ImGui::CheckboxFlags("Scale", &flags, ImPlotDragToolFlags_NoInputs);
 
 		//ImGui::CheckboxFlags("saisei", &flags, ImPlotDragToolFlags_Delayed); //アニメーショングラフ再生ボタン
 
@@ -59,7 +56,7 @@ void AnimationData::Demo_DragPoints()
 			sx = lerp(P[0].x, P[1].x, t);
 			sy = lerp(P[0].y, P[1].y, t);
 
-			if (ber)
+			if (berStart)
 			{
 				if (isDragFrameTime == true)
 				{

@@ -30,7 +30,7 @@ Monster::MonsterInitData	Monster::ObjectInitData[] = {
 };
 // モデルファイル名リスト
 Monster::MonsterModelData			Monster::XFileData[] = {
-	{MONSTERPARTS::HIP, "assets/model/Char/E2/e2_hip.x"},
+	{MONSTERPARTS::HIP, "assets/VCharacter/VChar.pmx"},
 	{MONSTERPARTS::BODY, "assets/model/Char/E2/e2_body.x"},
 	{MONSTERPARTS::HEAD, "assets/model/Char/E2/e2_head.x"},
 	{MONSTERPARTS::ARMR0,"assets/model/Char/E2/e2_armr0.x"},
@@ -67,7 +67,7 @@ bool Monster::Init()
 				Monster::XFileData[i].XfileName,	// ファイル名 
 				"shader/vs.hlsl",				// 頂点シェーダー
 				"shader/ps.hlsl",				// ピクセルシェーダー
-				"assets/Char/E2/");				// テクスチャの格納フォルダ
+				"assets/VCharacter/Texture/");				// テクスチャの格納フォルダ
 			if (!sts) {
 				char str[128];
 				sprintf_s<128>(str, "%s", Monster::XFileData[i].XfileName);
@@ -103,6 +103,7 @@ void Monster::Draw()
 	}
 }
 
+//キャラクター更新処理
 void Monster::Update()
 {
 
@@ -214,6 +215,7 @@ void Monster::Finalize()
 {
 }
 
+//キャラクター移動処理
 void Monster::UpdateLocalpose()
 {
 
@@ -265,6 +267,7 @@ void Monster::UpdateLocalpose()
 	DX11MakeWorldMatrix(partsmtx, partsangle[idx], partstrans[idx]);
 	DX11MtxMultiply(m_mtxlocalpose[idx], partsmtx, m_mtxlocalpose[idx]);
 }
+
 
 void Monster::CaliculateParentChildMtx()
 {
