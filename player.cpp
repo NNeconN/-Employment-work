@@ -13,9 +13,10 @@ Character::CharacterInitData	Character::ObjectInitData[] = {
 	{CHARACTERS::CHAR,CHARACTERS::STAGE,{0.0f, -10.0f, 0.0f}, {0,0,0}, },
 	{ CHARACTERS::END, CHARACTERS::END, { 0.0f, 0.0f, 0.0f }, { 0,0,0 } } // 終了
 };
+
 // モデルファイル名リスト
 Character::CharacterModelData			Character::XFileData[] = {
-	{CHARACTERS::CHAR, "assets/VCharacter/VChar.pmx"},
+	{CHARACTERS::CHAR, "assets/VCharacter/VCharacter.pmx"},
 	{CHARACTERS::STAGE,"assets/stage/kyousitu/koukoukyousitu.pmx"},
 	{CHARACTERS::END,nullptr }
 };
