@@ -131,7 +131,6 @@
     <ClCompile Include="AnimationData.cpp" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="assimpscene.cpp" />
-    <ClCompile Include="Bone.cpp" />
     <ClCompile Include="BoundingSphere.cpp" />
     <ClCompile Include="CDirectXGraphics.cpp" />
     <ClCompile Include="CModel.cpp" />
@@ -163,10 +162,6 @@
     <ClCompile Include="ModelData.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="Shader.cpp" />
-    <ClCompile Include="stage.cpp" />
-    <ClCompile Include="StageHit.cpp" />
-    <ClCompile Include="tank.cpp" />
-    <ClCompile Include="TimelineData.cpp" />
     <ClCompile Include="updatespherecamera.cpp" />
     <ClCompile Include="utftosjisconv.cpp" />
     <ClCompile Include="WICTextureLoader.cpp" />
@@ -174,7 +169,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationData.h" />
-    <ClInclude Include="Bone.h" />
     <ClInclude Include="BoundingSphere.h" />
     <ClInclude Include="collision.h" />
     <ClInclude Include="imgui\imconfig.h" />
@@ -216,10 +210,6 @@
     <ClInclude Include="player.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="shaderhashmap.h" />
-    <ClInclude Include="stage.h" />
-    <ClInclude Include="StageHit.h" />
-    <ClInclude Include="tank.h" />
-    <ClInclude Include="TimelineData.h" />
     <ClInclude Include="updatespherecamera.h" />
     <ClInclude Include="utftosjisconv.h" />
     <ClInclude Include="vertexproto.h" />

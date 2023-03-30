@@ -7,24 +7,18 @@
 #include "dx11mathutil.h"
 #include "Application.h"
 #include "CDirectInput.h"
-#include "skydome.h"
 #include "updatespherecamera.h"
 #include "BoundingSphere.h"
 #include "myimgui.h"
 #include "ModelMgr.h"
-#include "stage.h"
-#include "StageHit.h"
-#include "tank.h"
 #include "implot/implot.h"
 #include "myimplot.h"
-#include "player.h"	//相互インクルードを防ぐ為にcppにかく。ほんとはhに書くのがいい
+#include "player.h"
 #include "AnimationData.h"
-#include "TimelineData.h"
 
 //AnimationData g_anime;
-Timeline g_timeline;
 AnimationData g_anime;
-Monster g_monster;
+Character g_character;
 
 //モーショングラフリスト
 enum GraphList 
@@ -88,6 +82,40 @@ ImVec4 RandomColor() {
 	return col;
 }
 
+// IMGUIウインドウ
+void imguidebug() {
+	static int listNo;
+
+	if (ImGui::Button(u8"アニメーション"))
+	{
+		listNo = animetion;
+	}
+
+	if (listNo == animetion)
+	{
+		g_anime.Demo_DragPoints();
+	}
+
+	//現在の座標をImGuiで表す
+	ImGui::Begin(u8"座標");
+	static float slider1 = 0.0f;
+	static float slider2 = 0.0f;
+	slider1 = g_anime.g_character.GetPos().x;
+	slider2 = g_anime.g_character.GetPos().y;
+	static char text1[8] = "";
+
+	ImGui::SliderFloat(u8"現在座標", &slider1, -100, 100);
+
+	DirectX::XMFLOAT3 outputpos = { 0,0,0 };
+
+	outputpos.x = slider1;
+	outputpos.y = slider2;
+
+	g_character.SetPos(outputpos);
+
+	ImGui::End();
+}
+
 //ゲーム初期化
 void GameInit() {
 	// DX11初期化
@@ -98,7 +126,7 @@ void GameInit() {
 		false);
 
 	// カメラが必要
-	DirectX::XMFLOAT3 eye(0, 10, -70);	// カメラの位置
+	DirectX::XMFLOAT3 eye(0, 20, -160);	// カメラの位置
 	DirectX::XMFLOAT3 lookat(0, 0, 0);	// 注視点
 	DirectX::XMFLOAT3 up(0, 1, 0);		// カメラの上向きベクトル
 
@@ -124,7 +152,8 @@ void GameInit() {
 		Application::CLIENT_WIDTH,
 		Application::CLIENT_HEIGHT);
 
-	g_monster.Init();
+	// キャラクター初期化
+	g_character.Init();
 
 	// IMGUI初期化
 	imguiInit();
@@ -137,106 +166,18 @@ void GameInput(uint64_t dt) {
 
 //更新処理
 void GameUpdate(uint64_t dt) {
-	// プレイヤ更新
-	g_monster.Update();
-}
+	DirectX::XMFLOAT3 eye = CCamera::GetInstance()->GetEye();
+	// キャラクター更新
+	g_character.Update();
 
-//ファイル選択
-void FileSelection()
-{
-	if (ImGui::Button("Model File"))
-		ImGui::OpenPopup("Model File");
-	if (ImGui::BeginPopupModal("Model File", NULL, ImGuiWindowFlags_MenuBar))
-	{
-		if (ImGui::BeginMenuBar())
-		{
-			if (ImGui::BeginMenu("File"))
-			{
-				if (ImGui::MenuItem("Some menu item")) {}
-				ImGui::EndMenu();
-			}
-			ImGui::EndMenuBar();
-		}
-		ImGui::Text("Hello from Stacked The First\nUsing style.Colors[ImGuiCol_ModalWindowDimBg] behind it.");
-
-		// Testing behavior of widgets stacking their own regular popups over the modal.
-		static int item = 1;
-		static float color[4] = { 0.4f, 0.7f, 0.0f, 0.5f };
-		ImGui::Combo("Combo", &item, "aaaa\0bbbb\0cccc\0dddd\0eeee\0\0");
-		ImGui::ColorEdit4("color", color);
-
-		if (ImGui::Button("Add another modal.."))
-			ImGui::OpenPopup("Stacked 2");
-
-		// Also demonstrate passing a bool* to BeginPopupModal(), this will create a regular close button which
-		// will close the popup. Note that the visibility state of popups is owned by imgui, so the input value
-		// of the bool actually doesn't matter here.
-		bool unused_open = true;
-		if (ImGui::BeginPopupModal("Stacked 2", &unused_open))
-		{
-			ImGui::Text("Hello from Stacked The Second!");
-			if (ImGui::Button("Close"))
-				ImGui::CloseCurrentPopup();
-			ImGui::EndPopup();
-		}
-
-		if (ImGui::Button("Close"))
-			ImGui::CloseCurrentPopup();
-		ImGui::EndPopup();
-	}
-}
-
-// IMGUIウインドウ
-void imguidebug() {
-	//Demo_DragPoints();
-	static int listNo;
-
-	if (ImGui::Button(u8"アニメーション"))
-	{
-		listNo = animetion;
+	//カメラ操作
+	if (CDirectInput::GetInstance().CheckKeyBuffer(DIK_A)) {
+		DirectX::XMFLOAT4(eye.x, eye.y -= 2.0f, eye.z, 0);
 	}
 
-	if (ImGui::Button(u8"タイムライン"))
-	{
-		listNo = timeline;
+	if (CDirectInput::GetInstance().CheckKeyBuffer(DIK_D)) {
+		DirectX::XMFLOAT4(eye.x, eye.y += 2.0f, eye.z, 0);
 	}
-
-	if (listNo == animetion)
-	{
-		g_anime.Demo_DragPoints();
-	}
-
-	if (listNo == timeline)
-	{
-		g_timeline.Demo_TimelineGraph();
-	}
-
-	//座標のDragGui
-	ImGui::Begin(u8"座標");
-	static float slider1 = 0.0f;
-	static float slider2 = 0.0f;
-	slider1 = g_anime.g_monster.GetPos().x;
-	slider2 = g_anime.g_monster.GetPos().y;
-	static char text1[8] = "";
-
-	ImGui::Text("fps: %.2f", &g_monster.hp);
-	ImGui::SliderFloat("slider 1", &slider1, -100, 100);
-
-	FileSelection();
-
-	DirectX::XMFLOAT3 outputpos = { 0,0,0 };
-
-	outputpos.x = slider1;
-	outputpos.y = slider2;
-
-	g_monster.SetPos(outputpos);
-	ImGui::InputText("textbox 1", text1, sizeof(text1));
-	if (ImGui::Button("button 1")) {
-		slider1 = 0.0f;
-		strcpy(text1, "button 1");
-	}
-
-	ImGui::End();
 }
 
 //描画
@@ -261,7 +202,8 @@ void GameRender(uint64_t dt) {
 	DirectX::XMFLOAT3 eye = CCamera::GetInstance()->GetEye();
 	DX11LightUpdate(DirectX::XMFLOAT4(eye.x, eye.y, eye.z, 0));
 
-	g_monster.Draw();
+	// キャラクター描画
+	g_character.Draw();
 
 	// imgui 描画
 	imguiDraw(imguidebug);
@@ -273,7 +215,6 @@ void GameRender(uint64_t dt) {
 void GameDispose() {
 
 	ModelMgr::GetInstance().Finalize();
-
 	imguiExit();
 	DX11Uninit();
 }

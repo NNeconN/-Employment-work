@@ -20,7 +20,7 @@
 //-----------------------------------------------------------------------------
 // スタティック　メンバー
 //-----------------------------------------------------------------------------
-const char*			Application::WINDOW_TITLE = "戦車を動かす";
+const char*			Application::WINDOW_TITLE = "3DCharacter";
 const char*			Application::WINDOW_CLASS_NAME = "win32app";
 
 const uint32_t		Application::WINDOW_STYLE_WINDOWED = (WS_VISIBLE | WS_CAPTION | WS_SYSMENU);
@@ -28,8 +28,8 @@ const uint32_t		Application::WINDOW_EX_STYLE_WINDOWED = (0);
 const uint32_t		Application::WINDOW_STYLE_FULL_SCREEN = (WS_VISIBLE | WS_POPUP);
 const uint32_t		Application::WINDOW_EX_STYLE_FULL_SCREEN = (0);
 
-const uint32_t		Application::CLIENT_WIDTH = 1280;
-const uint32_t		Application::CLIENT_HEIGHT = 720;
+const uint32_t		Application::CLIENT_WIDTH = 1580;
+const uint32_t		Application::CLIENT_HEIGHT = 980;
 
 uint32_t			Application::SYSTEM_WIDTH = 0;
 uint32_t			Application::SYSTEM_HEIGHT = 0;

@@ -19,7 +19,7 @@ public:
 public:
 	std::vector<int> AnimetionKey{}; //アニメーションキー
 
-	Monster g_monster;
+	Character g_character;
 private:
 	float sy; //leap()で計算後の数値を入れる変数 Y座標
 	float sx; //leap()で計算後の数値を入れる変数 X座標

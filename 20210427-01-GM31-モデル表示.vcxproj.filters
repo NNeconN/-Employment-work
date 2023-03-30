@@ -55,12 +55,6 @@
     <Filter Include="ソース ファイル\game\manager\modelmgr">
       <UniqueIdentifier>{54727503-6746-4cee-b5e2-ac351f9cf94b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\game\gemaobject\stage">
-      <UniqueIdentifier>{73cb2262-188e-43ae-998a-9e688e93dab7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\game\gemaobject\tank">
-      <UniqueIdentifier>{a3150807-1d9b-4ede-99c8-505733a1a39d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\system\implot">
       <UniqueIdentifier>{7aa76194-20aa-4ab5-a51e-5a6db7b719cd}</UniqueIdentifier>
     </Filter>
@@ -69,12 +63,6 @@
     </Filter>
     <Filter Include="ソース ファイル\game\animetion\Animetor">
       <UniqueIdentifier>{1e81f55e-ab44-489e-8990-0458f7bf90be}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\game\animetion\Bone">
-      <UniqueIdentifier>{701030af-c5d8-4932-ac2d-f98c9c689380}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\game\animetion\timeline">
-      <UniqueIdentifier>{f32e06de-9aaf-4399-985a-cfb1509cbfe7}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソース ファイル\game\manager\modelFileData">
       <UniqueIdentifier>{541e8917-9d51-4976-a7a6-97c27e2e794a}</UniqueIdentifier>
@@ -171,17 +159,8 @@
     <ClCompile Include="ModelMgr.cpp">
       <Filter>ソース ファイル\game\manager\modelmgr</Filter>
     </ClCompile>
-    <ClCompile Include="stage.cpp">
-      <Filter>ソース ファイル\game\gemaobject\stage</Filter>
-    </ClCompile>
-    <ClCompile Include="StageHit.cpp">
-      <Filter>ソース ファイル\system\util</Filter>
-    </ClCompile>
     <ClCompile Include="collision.cpp">
       <Filter>ソース ファイル\system\util</Filter>
-    </ClCompile>
-    <ClCompile Include="tank.cpp">
-      <Filter>ソース ファイル\game\gemaobject\tank</Filter>
     </ClCompile>
     <ClCompile Include="implot\implot.cpp">
       <Filter>ソース ファイル\system\implot</Filter>
@@ -198,14 +177,8 @@
     <ClCompile Include="imgui\ImGuizmo.cpp">
       <Filter>ソース ファイル\system\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="TimelineData.cpp">
-      <Filter>ソース ファイル\game\animetion\timeline</Filter>
-    </ClCompile>
     <ClCompile Include="AnimationData.cpp">
       <Filter>ソース ファイル\game\animetion\Animetor</Filter>
-    </ClCompile>
-    <ClCompile Include="Bone.cpp">
-      <Filter>ソース ファイル\game\animetion\Bone</Filter>
     </ClCompile>
     <ClCompile Include="ModelFileData.cpp">
       <Filter>ソース ファイル\game\manager\modelFileData</Filter>
@@ -326,17 +299,8 @@
     <ClInclude Include="ModelMgr.h">
       <Filter>ソース ファイル\game\manager\modelmgr</Filter>
     </ClInclude>
-    <ClInclude Include="stage.h">
-      <Filter>ソース ファイル\game\gemaobject\stage</Filter>
-    </ClInclude>
-    <ClInclude Include="StageHit.h">
-      <Filter>ソース ファイル\system\util</Filter>
-    </ClInclude>
     <ClInclude Include="collision.h">
       <Filter>ソース ファイル\system\util</Filter>
-    </ClInclude>
-    <ClInclude Include="tank.h">
-      <Filter>ソース ファイル\game\gemaobject\tank</Filter>
     </ClInclude>
     <ClInclude Include="implot\implot.h">
       <Filter>ソース ファイル\system\implot</Filter>
@@ -350,14 +314,8 @@
     <ClInclude Include="imgui\ImGuizmo.h">
       <Filter>ソース ファイル\system\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="TimelineData.h">
-      <Filter>ソース ファイル\game\animetion\timeline</Filter>
-    </ClInclude>
     <ClInclude Include="AnimationData.h">
       <Filter>ソース ファイル\game\animetion\Animetor</Filter>
-    </ClInclude>
-    <ClInclude Include="Bone.h">
-      <Filter>ソース ファイル\game\animetion\Bone</Filter>
     </ClInclude>
     <ClInclude Include="ModelFileData.h">
       <Filter>ソース ファイル\game\manager\modelFileData</Filter>
